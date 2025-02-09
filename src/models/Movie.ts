@@ -57,7 +57,7 @@ movieSchema.post("save", async (doc) => {
     for (const theater of doc.theaters) {
       await Theater.findByIdAndUpdate(theater._id, {
         $push: {
-          movies: theater._id,
+          movies: doc._id,
         },
       });
     }
@@ -75,7 +75,7 @@ movieSchema.post("deleteOne", async (doc) => {
     for (const theater of doc.theaters) {
       await Theater.findByIdAndUpdate(theater._id, {
         $pull: {
-          movies: theater._id,
+          movies: doc._id,
         },
       });
     }

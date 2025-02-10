@@ -33,3 +33,7 @@ export const authSchema = z.object({
   password: z.string().min(6),
   role: z.enum(["admin", "customer"])
 });
+
+export const topupSchema = z.object({
+  balance: z.number().min(1000),
+})

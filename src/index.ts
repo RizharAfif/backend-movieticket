@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import connectDB from "./utils/database";
 import adminRoutes from "./routes/adminRoutes";
 import bodyParser from "body-parser";
+import authRoutes from "./routes/authRoutes";
+import custGlobalRoutes from "./routes/customerRoutes";
 
 dotenv.config();
 
@@ -17,7 +19,9 @@ app.get("/", (req: Request, res: Response) => {
 	res.send("Express + TypeScript Server");
 });
 
+app.use('/api', authRoutes)
 app.use('/api/admin', adminRoutes)
+app.use('/api/customer', custGlobalRoutes)
 
 app.listen(port, () => {
 	console.log(`[server]: Server is running at http://localhost:${port}`);

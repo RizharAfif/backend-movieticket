@@ -8,14 +8,14 @@ import { imageFilter, thumbnailStorage } from "../utils/multer";
 const authRoutes = express.Router();
 
 const upload = multer({
-	storage: thumbnailStorage("public/uploads/photos"),
-	fileFilter: imageFilter,
+  storage: thumbnailStorage("public/uploads/photos"),
+  fileFilter: imageFilter,
 });
 
 authRoutes.post(
-	"/auth/login",
-	validateRequest(authSchema.omit({ name: true })),
-	login,
+  "/auth/login",
+  validateRequest(authSchema.omit({ name: true })),
+  login
 );
 authRoutes.post("/auth/register", upload.single("photo"), register);
 
